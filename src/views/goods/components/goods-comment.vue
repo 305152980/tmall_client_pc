@@ -54,7 +54,7 @@ export default {
   name: 'GoodsComment',
   components: { GoodsCommentImage },
   setup () {
-    // 获取评价信息。
+    // 获取评价信息
     const commentInfo = ref(null)
     const goods = inject('goods')
     findGoodsCommentInfo(goods.value.id).then(data => {
