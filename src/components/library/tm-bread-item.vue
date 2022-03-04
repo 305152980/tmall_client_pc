@@ -1,8 +1,8 @@
 <template>
   <div class="tm-bread-item">
-    <RouterLink v-if="to" :to="to">
+    <router-link v-if="to" :to="to">
       <slot />
-    </RouterLink>
+    </router-link>
     <span v-else>
       <slot />
     </span>

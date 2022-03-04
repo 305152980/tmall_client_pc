@@ -3,18 +3,18 @@
     <HomePanel :title="cate.name" v-for="cate in list" :key="cate.id">
       <template v-slot:right>
         <div class="sub">
-          <RouterLink v-for="sub in cate.children" :key="sub.id" :to="`/category/subCategory/${ sub.id }`">{{ sub.name }}</RouterLink>
+          <router-link v-for="sub in cate.children" :key="sub.id" :to="`/category/subCategory/${ sub.id }`">{{ sub.name }}</router-link>
         </div>
         <tm-more :path="`/category/${ cate.id }`" />
       </template>
       <div class="box">
-        <RouterLink class="cover" :to="`/category/${ cate.id }`">
+        <router-link class="cover" :to="`/category/${ cate.id }`">
           <img v-lazy="cate.picture" alt="">
           <strong class="label">
             <span>{{ cate.name }}馆</span>
             <span>{{ cate.saleInfo }}</span>
           </strong>
-        </RouterLink>
+        </router-link>
         <ul class="goods-list">
           <li v-for="item in cate.goods" :key="item.id">
             <home-goods-item :goods="item" />

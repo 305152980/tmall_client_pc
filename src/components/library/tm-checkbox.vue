@@ -29,7 +29,7 @@ export default {
       // 通知父组件。
       checked.value = !checked.value
       // 让组件支持 change 事件。
-      emit('change', checked.value)
+      emit('change', !checked.value)
     }
     return { checked, changeChecked }
   }

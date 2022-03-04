@@ -2,9 +2,9 @@
   <div class="home-category" @mouseleave="categoryId = null">
     <ul class="menu">
       <li :class="{ active: categoryId && categoryId === item.id }" v-for="item in menuList" :key="item.id" @mouseenter="categoryId = item.id">
-        <RouterLink :to="`/category/${ item.id }`">{{ item.name }}</RouterLink>
+        <router-link :to="`/category/${ item.id }`">{{ item.name }}</router-link>
         <template v-if="item.children">
-          <RouterLink v-for="sub in item.children" :key="sub.id" :to="`/category/subCategory/${ sub.id }`">{{ sub.name }}</RouterLink>
+          <router-link v-for="sub in item.children" :key="sub.id" :to="`/category/subCategory/${ sub.id }`">{{ sub.name }}</router-link>
         </template>
         <!-- 骨架 -->
         <template v-else>
@@ -19,27 +19,27 @@
       <!-- 商品 -->
       <ul v-if="currCategory && currCategory.goods">
         <li v-for="item in currCategory.goods" :key="item.id">
-          <RouterLink to="/">
+          <router-link to="/">
             <img :src="item.picture" alt="">
             <div class="info">
               <p class="name ellipsis-2">{{ item.name }}</p>
               <p class="desc ellipsis">{{ item.desc }}</p>
               <p class="price"><i>¥</i>{{ item.price }}</p>
             </div>
-          </RouterLink>
+          </router-link>
         </li>
       </ul>
       <!-- 品牌 -->
       <ul v-if="currCategory && currCategory.brands">
         <li class="brand" v-for="brand in currCategory.brands" :key="brand.id">
-          <RouterLink to="/">
+          <router-link to="/">
             <img :src="brand.picture" alt="">
             <div class="info">
               <p class="place"><i class="iconfont icon-dingwei"></i>{{ brand.place }}</p>
               <p class="name ellipsis">{{ brand.name }}</p>
               <p class="desc ellipsis-2">{{ brand.desc }}</p>
             </div>
-          </RouterLink>
+          </router-link>
         </li>
       </ul>
     </div>

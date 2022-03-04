@@ -1,16 +1,16 @@
 <template>
   <div class="home-goods-item">
-    <RouterLink :to="`/product/${ goods.id }`" class="image">
+    <router-link :to="`/product/${ goods.id }`" class="image">
       <img v-lazy="goods.picture" alt="" />
-    </RouterLink>
+    </router-link>
     <p class="name ellipsis-2">{{ goods.name }}</p>
     <p class="desc ellipsis">{{ goods.desc }}</p>
     <p class="price">&yen;{{ goods.price }}</p>
     <div class="extra">
-      <RouterLink to="/">
+      <router-link to="/">
         <span>找相似</span>
         <span>发现现多宝贝 &gt;</span>
-      </RouterLink>
+      </router-link>
     </div>
   </div>
 </template>

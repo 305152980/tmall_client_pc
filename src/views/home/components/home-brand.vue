@@ -8,9 +8,9 @@
       <Transition name="fade">
         <ul v-if="brands.length" class="list" :style="{ transform:`translateX(${ -index * 1240 }px)` }">
           <li v-for="item in brands" :key="item.id">
-            <RouterLink to="/">
+            <router-link to="/">
               <img :src="item.picture" alt="">
-            </RouterLink>
+            </router-link>
           </li>
         </ul>
         <div v-else class="skeleton">

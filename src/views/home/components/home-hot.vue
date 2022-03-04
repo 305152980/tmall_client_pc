@@ -6,11 +6,11 @@
         <Transition name="fade">
           <ul v-if="list.length" class="goods-list">
             <li v-for="item in list" :key="item.id">
-              <RouterLink to="/">
+              <router-link to="/">
                 <img :src="item.picture" alt="">
                 <p class="name">{{ item.title }}</p>
                 <p class="desc">{{ item.alt }}</p>
-              </RouterLink>
+              </router-link>
             </li>
           </ul>
           <home-newhot-item-skeleton v-else />

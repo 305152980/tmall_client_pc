@@ -11,6 +11,17 @@
 
 import defaultImg from '@/assets/images/200.jpg'
 
+import Message from './Message'
+import Confirm from './Confirm'
+
+// 使用 `require` 提供的 `context` 函数，加载某一个目录下所有 `.vue` 后缀的文件。
+// `context` 函数会返回一个导入函数 `importFn`，导入函数的属性 `keys()` 可以获取所有的文件路径。
+// 通过遍历文件路径数组，再使用 `importFn` 函数根据路径导入组件对象。
+// 遍历的同时进行全局注册。
+
+// context(目录路径，是否加载子目录，加载文件的正则匹配)
+const importFn = require.context('./', false, /\.vue$/)
+
 export default {
   install (app) {
     // // 在 app 上进行扩展，app 提供 component directive 函数。
@@ -21,13 +32,6 @@ export default {
     // app.component(TmBread.name, TmBread)
     // app.component(TmBreadItem.name, TmBreadItem)
 
-    // 使用 `require` 提供的 `context` 函数，加载某一个目录下所有 `.vue` 后缀的文件。
-    // `context` 函数会返回一个导入函数 `importFn`，导入函数的属性 `keys()` 可以获取所有的文件路径。
-    // 通过遍历文件路径数组，再使用 `importFn` 函数根据路径导入组件对象。
-    // 遍历的同时进行全局注册。
-
-    // context(目录路径，是否加载子目录，加载文件的正则匹配)
-    const importFn = require.context('./', false, /\.vue$/)
     importFn.keys().forEach(path => {
       // 导入组件
       const component = importFn(path).default
@@ -37,6 +41,10 @@ export default {
 
     // 自定义指令
     defineDirective(app)
+
+    // 定义原型函数
+    app.config.globalProperties.$message = Message
+    app.config.globalProperties.$confirm = Confirm
   }
 }
 

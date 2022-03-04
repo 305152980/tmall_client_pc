@@ -47,6 +47,8 @@
 import { nextTick, ref, watch, provide } from 'vue'
 import { findGoods } from '@/api/product'
 import { useRoute } from 'vue-router'
+import { useStore } from 'vuex'
+import Message from '@/components/library/Message'
 import GoodsImage from './components/goods-image'
 import GoodsSales from './components/goods-sales'
 import GoodsName from './components/goods-name'
@@ -60,8 +62,17 @@ export default {
   components: { GoodsImage, GoodsSales, GoodsName, GoodsSku, GoodsRelevant, GoodsTabs, GoodsWarn, GoodsHot },
   setup () {
     const goods = useGoods()
+    // 提供 goods 数据给后代组件使用。
+    provide('goods', goods)
 
-    const changeSku = (sku) => {
+    // 选择商品的数量。
+    const num = ref(1)
+
+    // 选中商品的 sku 信息。
+    const currSku = ref({})
+
+    // 商品的规格选择发生变化。
+    const changeSku = sku => {
       if (sku.skuId) {
         goods.value.price = sku.price
         goods.value.oldPrice = sku.oldPrice
@@ -75,15 +86,34 @@ export default {
       currSku.value = sku
     }
 
-    // 选择的商品数量。
-    const num = ref(1)
-    // 选中商品的 sku 信息。
-    const currSku = ref({})
-
-    // 提供 goods 数据给后代组件使用。
-    provide('goods', goods)
-
+    const store = useStore()
+    // 选中的商品加入购物车。
     const insertCart = () => {
+      if (currSku.value && currSku.value.skuId) {
+        // id：spuId skuId name attrsText picture price：加入时的价格 nowPrice：现在的价格 selected stock count isEffective：是否为有效商品
+        const { skuId, specsText: attrsText, inventory: stock } = currSku.value
+        const { id, name, price, mainPictures } = goods.value
+        // 调用 vuex actions 中的方法。
+        store
+          .dispatch('cart/insertCart', {
+            skuId,
+            attrsText,
+            stock,
+            id,
+            name,
+            price: price,
+            nowPrice: price,
+            picture: mainPictures[0],
+            selected: true,
+            isEffective: true,
+            count: num.value
+          })
+          .then(() => {
+            Message({ type: 'success', text: '商品加入购物车成功' })
+          })
+      } else {
+        Message({ text: '请选择商品的完整规格' })
+      }
     }
 
     return { goods, changeSku, num, insertCart }

@@ -1,8 +1,8 @@
 <template>
-  <RouterLink :to="path" class="tm-more">
+  <router-link :to="path" class="tm-more">
     <span>查看全部</span>
     <i class="iconfont icon-angle-right"></i>
-  </RouterLink>
+  </router-link>
 </template>
 
 <script>

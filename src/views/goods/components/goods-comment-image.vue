@@ -1,7 +1,7 @@
 <template>
   <div class="goods-comment-image">
     <div class="list">
-      <a :class="{ active:currImg === url }" @click="currImg=url"  href="javascript:;" v-for="url in pictures" :key="url">
+      <a :class="{ active: currImg === url }" @click="currImg = url" href="javascript:;" v-for="url in pictures" :key="url">
         <img :src="url" alt="">
       </a>
     </div>
@@ -38,7 +38,7 @@ export default {
     a {
       width: 120px;
       height: 120px;
-      border:1px solid #e4e4e4;
+      border: 1px solid #e4e4e4;
       margin-right: 20px;
       margin-bottom: 10px;
       img {
@@ -52,28 +52,28 @@ export default {
     }
   }
 }
- .preview {
-    width: 480px;
-    height: 480px;
-    border: 1px solid #e4e4e4;
-    background: #f8f8f8;
-    margin-bottom: 20px;
-    position: relative;
-    img {
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
-    }
-    i {
-      position: absolute;
-      right: 0;
-      top: 0;
-      width: 30px;
-      height: 30px;
-      background: rgba(0,0,0,0.2);
-      color: #fff;
-      text-align: center;
-      line-height: 30px;
-    }
+.preview {
+  width: 480px;
+  height: 480px;
+  border: 1px solid #e4e4e4;
+  background: #f8f8f8;
+  margin-bottom: 20px;
+  position: relative;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
   }
+  i {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 30px;
+    height: 30px;
+    background: rgba(0, 0, 0, 0.2);
+    color: #fff;
+    text-align: center;
+    line-height: 30px;
+  }
+}
 </style>

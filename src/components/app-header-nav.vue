@@ -1,17 +1,17 @@
 <template>
   <ul class="app-header-nav">
     <li class="home">
-      <RouterLink to="/">首页</RouterLink>
+      <router-link to="/">首页</router-link>
     </li>
     <li v-for="item in list" :key="item.id" @mousemove="show(item)" @mouseleave="hide(item)">
-      <RouterLink @click="hide(item)" :to="`/category/${ item.id }`">{{ item.name }}</RouterLink>
+      <router-link @click="hide(item)" :to="`/category/${ item.id }`">{{ item.name }}</router-link>
       <div class="layer" :class="{ open: item.open }" v-if="item.children">
         <ul>
           <li v-for="sub in item.children" :key="sub.id">
-            <RouterLink @click="hide(item)" :to="`/category/subCategory/${ sub.id }`">
+            <router-link @click="hide(item)" :to="`/category/subCategory/${ sub.id }`">
               <img :src="sub.picture" alt="">
               <p>{{ sub.name }}</p>
-            </RouterLink>
+            </router-link>
           </li>
         </ul>
       </div>

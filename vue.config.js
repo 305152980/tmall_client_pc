@@ -23,5 +23,13 @@ module.exports = {
       .use('url-loader')
       .loader('url-loader')
       .tap((options) => Object.assign(options, { limit: 10000 }))
+
+    // 允许 IP 域名方式来访问本项目。
+    config.devServer.disableHostCheck(true)
+  },
+  configureWebpack: {
+    externals: {
+      qc: 'QC'
+    }
   }
 }

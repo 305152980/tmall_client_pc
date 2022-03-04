@@ -2,23 +2,26 @@
   <header class="app-header">
     <div class="container">
       <h1 class="logo">
-        <RouterLink to="/">天猫商城</RouterLink>
+        <router-link to="/">天猫商城</router-link>
       </h1>
       <!-- 使用头部导航组件 -->
-      <AppHeaderNav />
+      <app-header-nav />
       <div class="search">
         <i class="iconfont icon-search"></i>
         <input type="text" placeholder="搜一搜" />
       </div>
+      <!-- 使用头部购物车组件 -->
+      <app-header-cart />
     </div>
   </header>
 </template>
 
 <script>
 import AppHeaderNav from './app-header-nav'
+import AppHeaderCart from './app-header-cart'
 export default {
   name: 'AppHeader',
-  components: { AppHeaderNav }
+  components: { AppHeaderNav, AppHeaderCart }
 }
 </script>
 
@@ -38,6 +41,7 @@ export default {
       text-indent: -9999px;
       background: url(../assets/images/logo.png) no-repeat center 18px / contain;
       background-size: 87px 53px;
+      // background-size: 125px 76px;
       background-position: center center;
     }
   }

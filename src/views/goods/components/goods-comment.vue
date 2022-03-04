@@ -28,8 +28,8 @@
         </div>
         <div class="body">
           <div class="score">
-            <i v-for="i in item.score" :key="i+'s'" class="iconfont icon-wjx01"></i>
-            <i v-for="i in 5-item.score" :key="i+'k'" class="iconfont icon-wjx02"></i>
+            <i v-for="i in item.score" :key="i + 's'" class="iconfont icon-wjx01"></i>
+            <i v-for="i in 5 - item.score" :key="i + 'k'" class="iconfont icon-wjx02"></i>
             <span class="attr">{{ formatSpecs(item.orderInfo.specs) }}</span>
           </div>
           <div class="text">{{ item.content }}</div>
@@ -42,7 +42,7 @@
       </div>
     </div>
     <!-- 分页组件 -->
-    <!-- <tm-pagination v-if="total" @current-change="changePagerFn" :page-size="reqParams.pageSize" :current-page="reqParams.page" /> -->
+    <tm-pagination v-if="total" @current-change="changePagerFn" :total="total" :page-size="reqParams.pageSize" :current-page="reqParams.page" />
   </div>
 </template>
 
@@ -78,16 +78,16 @@ export default {
       currentTagIndex.value = i
       // 点击 tag 的时候修改筛选条件。
       const tag = commentInfo.value.tags[i]
-      // 情况1：全部评价。
-      // 情况2：有图。
-      // 情况3：正常 tag。
       if (tag.type === 'all') {
+        // 情况1：全部评价。
         reqParams.hasPicture = null
         reqParams.tag = null
       } else if (tag.type === 'img') {
+        // 情况2：有图。
         reqParams.hasPicture = true
         reqParams.tag = null
       } else {
+        // 情况3：正常 tag。
         reqParams.hasPicture = null
         reqParams.tag = tag.title
       }
@@ -108,11 +108,11 @@ export default {
       pageSize: 10,
       hasPicture: null,
       tag: null,
-      // 排序方式：praiseCount 热度  createTime 最新。
+      // 排序方式可选字段：praiseCount 热度  createTime 最新。
       sortField: null
     })
 
-    // 初始化需要发请求，筛选条件发生改变发请求。
+    // 初始化时需要发请求，筛选条件发生改变时需要发请求。
     const commentList = ref([])
     const total = ref(0)
     watch(
@@ -126,7 +126,7 @@ export default {
       { immediate: true }
     )
 
-    // 定义转换数据的函数（对应 vue2.0 的过滤器）。
+    // 定义转换数据的函数（vue2.0 的过滤器）。
     const formatSpecs = specs => {
       return specs.reduce((p, c) => `${p} ${c.name}：${c.nameValue}`, '').trim()
     }
@@ -139,7 +139,7 @@ export default {
       reqParams.page = newPage
     }
 
-    return { commentInfo, currentTagIndex, changeTag, reqParams, commentList, changeSort, formatSpecs, formatNickname, total, changePagerFn }
+    return { commentInfo, currentTagIndex, changeTag, reqParams, commentList, total, changeSort, formatSpecs, formatNickname, changePagerFn }
   }
 }
 </script>

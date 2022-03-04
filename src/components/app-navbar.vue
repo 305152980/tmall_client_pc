@@ -4,17 +4,17 @@
       <ul>
         <template v-if="profile.token">
           <li>
-            <RouterLink to="/member"><i class="iconfont icon-user"></i>{{ profile.account }}</RouterLink>
+            <router-link to="/member"><i class="iconfont icon-user"></i>{{ profile.account }}</router-link>
           </li>
           <li><a @click="logout()" href="javascript:;">退出登录</a></li>
         </template>
         <template v-else>
           <li>
-            <RouterLink to="/login">请先登录</RouterLink>
+            <router-link to="/login">请先登录</router-link>
           </li>
           <li><a href="javascript:;">免费注册</a></li>
         </template>
-        <li><a href="javascript:;">我的订单</a></li>
+        <li><router-link to="/member/order">我的订单</router-link></li>
         <li><a href="javascript:;">会员中心</a></li>
         <li><a href="javascript:;">帮助中心</a></li>
         <li><a href="javascript:;">关于我们</a></li>
@@ -40,7 +40,7 @@ export default {
 
     // 退出登录
     // 1. 清空本地存储信息和 vuex 的用户信息。
-    // 2. 跳转登录。
+    // 2. 跳转到登录页。
     const router = useRouter()
     const logout = () => {
       store.commit('user/setUser', {})

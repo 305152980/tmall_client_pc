@@ -5,16 +5,16 @@
       <!-- 要显示的图片加上 fade 类 -->
       <li class="carousel-item" v-for="(item, i) in sliders" :key="item.id" :class="{ fade: index === i }">
         <!-- 图片 -->
-        <RouterLink v-if="item.imgUrl" to="/">
+        <router-link v-if="item.imgUrl" to="/">
           <img :src="item.imgUrl" alt="">
-        </RouterLink>
+        </router-link>
         <!-- 商品列表 item=[goods1, goods2, ...] -->
         <div v-else class="slider">
-          <RouterLink v-for="goods in item" :key="goods.id" :to="`/product/${ goods.id }`">
+          <router-link v-for="goods in item" :key="goods.id" :to="`/product/${ goods.id }`">
             <img :src="goods.picture" alt="">
             <p class="name ellipsis">{{ goods.name }}</p>
             <p class="price">&yen;{{ goods.price }}</p>
-          </RouterLink>
+          </router-link>
         </div>
       </li>
     </ul>

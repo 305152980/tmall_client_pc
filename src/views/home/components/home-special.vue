@@ -6,7 +6,7 @@
     </template>
     <div ref="target" class="special-list">
       <div class="special-item" v-for="item in specialList" :key="item.id">
-        <RouterLink to="/">
+        <router-link to="/">
           <img :src="item.cover" alt />
           <div class="meta">
             <p class="title">
@@ -15,7 +15,7 @@
             </p>
             <span class="price">&yen;{{ item.lowestPrice }}起</span>
           </div>
-        </RouterLink>
+        </router-link>
         <div class="foot">
           <span class="like"><i class="iconfont icon-hart1"></i>{{ item.collectNum }}</span>
           <span class="view"><i class="iconfont icon-see"></i>{{ item.viewNum }}</span>

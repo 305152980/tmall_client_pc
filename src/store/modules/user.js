@@ -1,4 +1,5 @@
 // 用户模块
+
 export default {
   namespaced: true,
   state () {
@@ -11,13 +12,19 @@ export default {
         account: '',
         mobile: '',
         token: ''
-      }
+      },
+      // QQ 登录后的回跳地址。
+      redirectUrl: '/'
     }
   },
   mutations: {
-    // 修改用户信息。payload 就是用户信息对象。
-    setUser (state, payload) {
-      state.profile = payload
+    // 修改用户信息。
+    setUser (state, userInfo) {
+      state.profile = userInfo
+    },
+    // 修 QQ 登录后的回跳地址。
+    setRedirectUrl (state, url) {
+      state.redirectUrl = url
     }
   }
 }

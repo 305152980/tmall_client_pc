@@ -2,6 +2,7 @@
 
 import { topCategory } from '@/api/constants'
 import { findAllCategory } from '@/api/category'
+
 export default {
   namespaced: true,
   state () {
@@ -12,9 +13,9 @@ export default {
   },
   // 修改分类函数
   mutations: {
-    // payload 所有的分类集合。
-    setList (state, payload) {
-      state.list = payload
+    // categoryList 所有的分类集合。
+    setList (state, categoryList) {
+      state.list = categoryList
     },
     // 定义 show 和 hide 函数，控制当前分类二级分类的显示和隐藏。
     show (state, id) {
